@@ -1,19 +1,28 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Meta
+* Resources
+- https://getbootstrap.com/docs/4.0/
+- https://github.com/plataformatec/devise
+- On using git: https://stackabuse.com/git-merge-branch-into-master/
 
-Things you may want to cover:
+* Potential Gems to use
+- https://github.com/plataformatec/simple_form
 
-* Ruby version
 
-* System dependencies
+## Development
+* Dependencies
+- Devise
+- Bootstrap (CDN)
+- JQuery (CDN)
+- Popper(CDN)
 
 * Configuration
+- Devise => custom setup for controller/route/views
 
-* Database creation
-
-* Database initialization
+* Models
+-User (devise)
+-Project
 
 * How to run the test suite
 
