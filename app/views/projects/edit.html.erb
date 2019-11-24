@@ -1,0 +1,15 @@
+<div id="edit-project-form-heading" class="container text-center">
+  <h2>Edit Project</h2>
+</div>
+
+<div id="edit-project-form" class="container w-50">
+    <%= form_with(model: @project) do |f|%>
+        <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, :class => "form-control"%>
+        </div>
+        <div>
+            <%= f.submit "Save Changes", :class => "btn btn-primary" %> <%= link_to "Delete", project_path(@project), method: :delete, :class => "btn btn-primary"%>
+        </div>
+    <% end %>
+</div>

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root to:'home#index'
-  devise_for :users, controllers: { sessions: 'users/sessions' }
 
+  # Devise custom routing
+  devise_for :users, controllers: { sessions: 'users/sessions' }
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
     get 'register', to: 'devise/registrations#new'
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
   get 'dashboard', to: "dashboard#index"
 
   # Projects
-  #get 'projects', to: "projects#index"
   resources :projects
 
 

@@ -1,9 +1,26 @@
 <div class="container">
     <h2> Projects </h2>
 
-<br />
-    <div class="card card-body">
-        <h4> Project 1</h4>
-        <%= link_to "Open", root_path%>
+    <br />
+    <div>
+        <%= link_to "Create New Project", new_project_path, :class => "btn btn-primary" %>
     </div>
+    <br />
+
+    <% if @projects.any? %>
+        <% @projects.each do |project|%>
+
+            <div class="card card-body">
+                <h4><%= project.title %></h4>
+                <%= link_to "View", project_path(project) %>
+                <%= link_to "Edit", edit_project_path(project) %>
+                <%= link_to "Delete", project_path(project), method: :delete %>
+            </div>
+
+        <% end %>
+
+    <% else %>
+    <br />
+        <p>No projects to display.</p>
+    <% end %>
 </div>

@@ -1,8 +1,15 @@
-<div class="container">
-    <h1> Create Project </h1>
+<div id="create-project-form-heading" class="container text-center">
+  <h2>New Project</h2>
 </div>
 
-<div class="container">
-    <%# form for the Project of the current User%>
-    check out this gem: https://github.com/plataformatec/simple_form
+<div id="create-project-form" class="container w-50">
+    <%= form_with(model: @project) do |f|%>
+        <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, :class => "form-control"%>
+        </div>
+        <div>
+            <%= f.submit "Create", :class => "btn btn-primary" %>
+        </div>
+    <% end %>
 </div>
