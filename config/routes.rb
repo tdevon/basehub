@@ -14,6 +14,16 @@ Rails.application.routes.draw do
   # Projects
   resources :projects
 
-
+  # Tasks
+  resources :projects do
+    resources :tasks
+  end
+  # get 'projects/:id/tasks', to: 'tasks#index', as: "tasks_path"
+  # get 'projects/:id/tasks/new', to: 'tasks#new', as: "new_task_path"
+  # post 'projects/:id/tasks/new', to: 'tasks#create'
+  # get 'projects/:id/tasks/:task_id', to: 'tasks#show', as: "task_path"
+  # post 'projects/:id/tasks/:task_id', to: 'tasks#update'
+  # get 'projects/:id/tasks/:task_id/edit', to: 'tasks#edit', as: "edit_task_path"
+  # delete 'projects/:id/tasks/:task_id', to: 'tasks#destroy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

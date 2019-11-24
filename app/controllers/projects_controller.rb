@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
     end
     def show
         @project ||= current_user.projects.find_by(id:params[:id])
+        @task = @project.tasks.build
     end
     def new
         @project = current_user.projects.build if user_signed_in?

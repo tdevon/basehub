@@ -8,6 +8,7 @@
             <%= f.label :title %>
             <%= f.text_field :title, :class => "form-control"%>
         </div>
+
         <div>
             <%= f.submit "Save Changes", :class => "btn btn-primary" %> <%= link_to "Delete", project_path(@project), method: :delete, :class => "btn btn-primary"%>
         </div>

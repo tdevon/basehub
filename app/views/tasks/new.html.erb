@@ -1,0 +1,15 @@
+<div id="create-task-form-heading" class="container text-center">
+  <h2>New Task</h2>
+</div>
+
+<div id="create-task-form" class="container w-50">
+    <%= form_for([@project, @task]) do |f|%>
+        <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, :class => "form-control"%>
+        </div>
+        <div>
+            <%= f.submit "Create", :class => "btn btn-primary" %>
+        </div>
+    <% end %>
+</div>

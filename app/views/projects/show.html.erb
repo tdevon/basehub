@@ -1,9 +1,40 @@
 <% unless @project.nil?%>
-    <div class="container">
+    <div class="container w-50">
         <h4 class="text-center"> <%= @project.title %> </h4>
+
+        <br />
+            <h3> Tasks </h3>
+            <div id="create-task-form-project-view" class="mb-0 pb-0">
+                <%= form_for [@project, @task] do |f|%>
+                    <div class="input-group mb-0">
+                        <%= f.text_field :name, :class => "form-control" %>
+                        <div class="input-group-append">
+                            <%= f.submit "+", :class => "btn btn-outline-success"%>
+                        </div>
+                    </div>
+                    
+                <% end %>
+            </div>
+
+
+            <% if @project.tasks%>
+                <% @project.tasks.each do |task_item| %>
+                    <% unless task_item.name.nil?%>
+                        <div class="card card-body">
+                            <%= task_item.name%>
+                        </div>
+                    <% end %>
+                <% end %>
+            <% else %>
+                No tasks.
+            <% end %>
+        <br />
+
         <div class="container text-center mt-3">
             <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
             <%= link_to "Delete", project_path(@project), method: :delete, :class => "btn btn-primary"%>
         </div>
     </div>
+<br />
+
 <% end %>
