@@ -1,10 +1,33 @@
 <div class="container">
     <h2> Dashboard </h2>
-
 <br />
-    <div class="card card-body">
-        <h4> Projects </h4>
-        <%= link_to "View Projects", projects_path%>
-        <%= link_to "New Project", new_project_path %>
+
+    <div class="row">
+        <div class="col-sm">
+            <h4> Projects </h4>
+            <%= link_to "View All", projects_path %>
+            <br />
+            <%= link_to "Create Project", new_project_path %>
+            <%
+=begin%>
+ <br />
+            <br />
+            <% if current_user.projects %>
+                <% current_user.projects.all.each do |proj|%>
+                    <div class="card card-body">
+                        <h4><%= proj.title %></h4>
+                        <%= link_to "View", project_path(proj) %>
+                        <%= link_to "Edit", edit_project_path(proj) %>
+                        <%= link_to "Delete", project_path(proj), method: :delete %>
+                    </div>
+                <% end %>
+            <% end %> 
+<%
+=end%>
+        </div>
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+        </div>
     </div>
 </div>
