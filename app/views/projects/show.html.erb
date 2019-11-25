@@ -1,9 +1,12 @@
 <% unless @project.nil?%>
     <div class="container w-50">
         <h4 class="text-center"> <%= @project.title %> </h4>
+        <p class="text-secondary"> *dev note: must hit enter to save edits. Need to add feature of dynamic "save" button </p>
 
         <br />
             <h3> Tasks </h3>
+
+            <%# Form for adding tasks. ** Put this in a partial %>
             <div id="create-task-form-project-view" class="mb-0 pb-0">
                 <%= form_for [@project, @task] do |f|%>
                     <div class="input-group mb-0">
@@ -16,23 +19,31 @@
                 <% end %>
             </div>
 
-
+            <%# Show Project tasks. *Put this in a partial%>
             <% if @project.tasks%>
                 <% @project.tasks.each do |task_item| %>
                     <% unless task_item.name.nil?%>
                         <div class="card card-body">
-                            <%= task_item.name%>
+                            <%= form_for [@project, edit_task_item(task_item)] do |f|%>
+                                <div class="edit_task_field">
+                                    <%= f.text_field :name, :class => "hidden-form-field" %>
+                                    
+                                    <%= link_to "X", project_task_path(@project, task_item), method: :delete, :class=>"btn btn-danger btn-sm float-right"%>
+                                </div>
+                            <% end %>
+                        
+                        
                         </div>
                     <% end %>
                 <% end %>
             <% else %>
                 No tasks.
             <% end %>
-        <br />
 
+        <br />
+        <%# Links to edit and delete. *Put this in a partial%>
         <div class="container text-center mt-3">
-            <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
-            <%= link_to "Delete", project_path(@project), method: :delete, :class => "btn btn-primary"%>
+            <%= link_to "Edit Project", edit_project_path(@project), :class => "btn btn-primary" %>
         </div>
     </div>
 <br />
