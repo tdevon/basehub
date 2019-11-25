@@ -2,12 +2,13 @@ class TasksController < ApplicationController
     def index
     end
     def new
-        @project = current_user.projects.find_by(params[:id])
+        @project = current_user.projects.find_by(id: params[:project_id])
         @task = @project.tasks.build
     end
     def create
-        @project = current_user.projects.find_by(params[:id])
+        @project = current_user.projects.find_by(id: params[:project_id])
         @task = @project.tasks.build(task_params)
+        
         if @task.save
             redirect_to project_path(@project)
         else
