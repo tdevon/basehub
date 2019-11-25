@@ -32,6 +32,13 @@ class TasksController < ApplicationController
         redirect_to @project
 
     end
+    def sort
+        params[:task].each_with_index do |id,index|
+            Task.where(id: id).update_all(position: index + 1)
+        end
+
+        head :ok
+    end
 private
     def task_params
         params.require(:task).permit(:name)

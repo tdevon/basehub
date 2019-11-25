@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   resources :projects do
     resources :tasks
   end
+
+  # Endpoints for sorting functionality via task_sort js
+  resources :tasks do
+    collection do
+      patch :sort
+    end
+  end
   # get 'projects/:id/tasks', to: 'tasks#index', as: "tasks_path"
   # get 'projects/:id/tasks/new', to: 'tasks#new', as: "new_task_path"
   # post 'projects/:id/tasks/new', to: 'tasks#create'
