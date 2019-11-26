@@ -1,0 +1,22 @@
+<% if items%>
+
+    <div id="tasks" class="list-group" data-url="<%= sort_tasks_path%>">
+        <% items.each do |task| %>
+            <% unless task.name.nil?%>
+                
+                <div class="card card-body list-group-item" id=<%=dom_id(task)%> >
+                    <%= form_for [@roject, edit_task_item(task)] do |f|%>
+                        <div class="edit_task_field">
+                            <%= f.text_field :name, :class => "hidden-form-field" %>
+                            <%= link_to "X", project_task_path(project, task), method: :delete, :class=>"btn btn-danger btn-sm float-right"%>
+                        </div>
+                    <% end %>
+                </div>
+
+            <% end %>
+        <% end %>
+    </div>
+
+<% else %>
+    No tasks.
+<% end %>

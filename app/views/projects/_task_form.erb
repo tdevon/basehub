@@ -1,0 +1,11 @@
+<div id="create-task-form-project-view" class="mb-0 pb-0">
+    <%= form_for [project, task] do |f|%>
+        <div class="input-group mb-0">
+            <%= f.text_field :name, :class => "form-control" %>
+            <div class="input-group-append">
+                <%= f.submit "+", :class => "btn btn-outline-success"%>
+            </div>
+        </div>
+        
+    <% end %>
+</div>

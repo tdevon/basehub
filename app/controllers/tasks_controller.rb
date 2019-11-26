@@ -2,13 +2,13 @@ class TasksController < ApplicationController
     def index
     end
     def new
-        @project = current_user.projects.find_by(id: params[:project_id])
-        @task = @project.tasks.build
+        get_project_from_params
+        build_task
     end
     def create
-        @project = current_user.projects.find_by(id: params[:project_id])
-        @task = @project.tasks.build(task_params)
-        
+        get_project_from_params
+        build_task(task_params)
+
         if @task.save
             redirect_to project_path(@project)
         else
@@ -16,18 +16,18 @@ class TasksController < ApplicationController
         end
     end
     def edit
-        @project = current_user.projects.find_by(params[:id])
-        @task = @project.tasks.find_by(id:params[:task_id])
+        get_project_from_params
+        get_task_from_params
     end
     def update
-        @project = Project.find_by(id: params[:project_id])
-        @task = Task.find_by(id:params[:id])
+        get_project_from_params
+        get_task_from_params
         @task.update(task_params)
         redirect_to @project
     end
     def destroy
-        @project = Project.find_by(id: params[:project_id])
-        @task = Task.find_by(id: params[:id])
+        get_project_from_params
+        get_task_from_params
         @task.destroy
         redirect_to @project
 
@@ -39,8 +39,18 @@ class TasksController < ApplicationController
 
         head :ok
     end
+    
 private
     def task_params
         params.require(:task).permit(:name)
+    end
+    def get_project_from_params
+        @project = Project.find_by(id: params[:project_id])
+    end
+    def build_task(args=nil)
+        @task = @project.tasks.build(args)
+    end
+    def get_task_from_params
+        @task = Task.find_by(id:params[:id])
     end
 end
