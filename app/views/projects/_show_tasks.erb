@@ -5,9 +5,12 @@
             <% unless task.name.nil?%>
                 
                 <div class="card card-body list-group-item" id=<%=dom_id(task)%> >
-                    <%= form_for [@roject, edit_task_item(task)] do |f|%>
+                    <%= form_for [project, edit_task_item(task)] do |f|%>
                         <div class="edit_task_field">
                             <%= f.text_field :name, :class => "hidden-form-field" %>
+                            <%# ADD DATE FIELD HERE https://jqueryui.com/datepicker/ %>
+                            <%= f.date_select :date, order: [:day, :month, :year]%>
+                            <%# select_datetime Date.today, :prefix => :date, :class => "form-control"%>
                             <%= link_to "X", project_task_path(project, task), method: :delete, :class=>"btn btn-danger btn-sm float-right"%>
                         </div>
                     <% end %>

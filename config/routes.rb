@@ -32,5 +32,7 @@ Rails.application.routes.draw do
   # post 'projects/:id/tasks/:task_id', to: 'tasks#update'
   # get 'projects/:id/tasks/:task_id/edit', to: 'tasks#edit', as: "edit_task_path"
   # delete 'projects/:id/tasks/:task_id', to: 'tasks#destroy'
+
+  get "calendar", to: "calendar#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

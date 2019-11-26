@@ -16,21 +16,21 @@ class TasksController < ApplicationController
         end
     end
     def edit
-        get_project_from_params
         get_task_from_params
+        get_project_from_task
     end
     def update
-        get_project_from_params
         get_task_from_params
-        @task.update(task_params)
-        redirect_to @project
+        get_project_from_task
+        if @task.update(task_params)
+            redirect_to @project
+        end
     end
     def destroy
         get_project_from_params
         get_task_from_params
         @task.destroy
         redirect_to @project
-
     end
     def sort
         params[:task].each_with_index do |id,index|
@@ -42,10 +42,13 @@ class TasksController < ApplicationController
     
 private
     def task_params
-        params.require(:task).permit(:name)
+        params.require(:task).permit(:name, :date)
     end
     def get_project_from_params
         @project = Project.find_by(id: params[:project_id])
+    end
+    def get_project_from_task
+        @project = Project.find_by(id: @task.project_id)
     end
     def build_task(args=nil)
         @task = @project.tasks.build(args)

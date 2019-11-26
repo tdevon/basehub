@@ -1,0 +1,12 @@
+
+<div class="container">
+<p class="text-secondary">Try this gem: http://excid3.github.io/simple_calendar</p>
+    <h3> Calendar </h3>
+    <% @dates.each do |d|%>
+        <% if !d.date.nil? %>
+            <%= d.date&.strftime('%B %e, %Y')%>
+            <br />
+        <%end%>
+    <%end%>
+</div>
+
