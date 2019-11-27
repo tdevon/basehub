@@ -56,3 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'acts_as_list'
 gem 'rails_sortable'
+
+# calendar
+gem "simple_calendar", "~> 2.0"

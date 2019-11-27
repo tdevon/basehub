@@ -2,9 +2,8 @@
     <h2> Dashboard </h2>
 
 <br />
-    <div class="card card-body">
-        <h4> Projects </h4>
-        <%= link_to "View Projects", projects_path%>
-        <%= link_to "New Project", new_project_path %>
-    </div>
+        <%= link_to "View Projects", projects_path, :class =>"btn btn-primary"%>
+        <%= link_to "Start New Project", new_project_path, :class=>"btn btn-success"%>
+        <%= link_to "View Calendar", calendar_path, :class=>"btn btn-info"%>
+
 </div>

@@ -10,7 +10,7 @@ class TasksController < ApplicationController
         build_task(task_params)
 
         if @task.save
-            redirect_to project_path(@project)
+            redirect_to @project
         else
             render 'new'
         end

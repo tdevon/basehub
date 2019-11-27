@@ -1,12 +1,49 @@
-
 <div class="container">
-<p class="text-secondary">Try this gem: http://excid3.github.io/simple_calendar</p>
-    <h3> Calendar </h3>
-    <% @dates.each do |d|%>
-        <% if !d.date.nil? %>
-            <%= d.date&.strftime('%B %e, %Y')%>
-            <br />
-        <%end%>
-    <%end%>
+  <h3> Today </h3>
+  <%= calendar number_of_days: 1, events: @tasks do |date, tasks| %>
+    <%= date.day %>
+
+    <% tasks.each do |task| %>
+        <div class="task_event">
+          <%= link_to task.name, task, :style => "font-weight: normal" %>
+        </div>
+      <% end %>
+  <% end %>
 </div>
 
+<br /><br /><br />
+
+<div class="container">
+  <h3> This Week </h3>
+  <%= week_calendar events: @tasks do |date, tasks| %>
+    <%= date.day %>
+
+    <% tasks.each do |task| %>
+      <div class="task_event">
+        <%= link_to task.name, task, :style => "font-weight: normal" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<br /><br /><br />
+
+<div class="container">
+  <h3> This Month </h3>
+  <%= month_calendar events: @tasks do |date, tasks| %>
+    <div>
+      <%= date.day %>
+      <% tasks.each do |task| %>
+        <div class="task_event">
+          <%=link_to task.name, task, :style => "font-weight: normal" %>
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+</div>
+</div>
+<br /><br /><br />
+
+<%# to customized views for calendar: rails g simple_calendar:views %>
+<%# https://github.com/excid3/simple_calendar %>
